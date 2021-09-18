@@ -1,33 +1,40 @@
 import React from 'react'
 import styled from 'styled-components';
 
+import Fade from 'react-reveal/Fade';
+
 function Section({ title, description, leftBtnText, rightBtnText, backgroundImg }) {
     console.log(backgroundImg);
 
     return (
         <Wrap bgImage={backgroundImg}>
-            <ItemText>
-                <h1>{title}</h1>
-                <p>{description}</p>
-            </ItemText>
+            <Fade bottom>
+                <ItemText>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
+                </ItemText>
+            </Fade>
 
             <Buttons>
-                {/* button Group */}
-                <ButtonGroup>
-                    <LeftButton>
-                        {leftBtnText}
-                    </LeftButton>
-                    {/* rightbuttonText 가 존재할때만 RightButton 보여줌 */}
-                    {rightBtnText &&
-                        <RightButton>
-                            {rightBtnText}
-                        </RightButton>
+                <Fade botton>
+                    {/* button Group */}
+                    <ButtonGroup>
+                        <LeftButton>
+                            {leftBtnText}
+                        </LeftButton>
+                        {/* rightbuttonText 가 존재할때만 RightButton 보여줌 */}
+                        {rightBtnText &&
+                            <RightButton>
+                                {rightBtnText}
+                            </RightButton>
 
-                    }
+                        }
 
-                </ButtonGroup>
+                    </ButtonGroup>
+                </Fade>
                 <DownArrow src="/images/down-arrow.svg" />
             </Buttons>
+
         </Wrap>
     );
 };
@@ -36,6 +43,7 @@ export default Section;
 
 //Wrap component
 const Wrap = styled.div`
+    z-index: 10;
     width:100vw; 
     height : 100vh;
     background-size:cover;
@@ -54,7 +62,7 @@ const Wrap = styled.div`
 const ItemText = styled.div`
     padding-top: 15vh;
     text-align:center;
-
+    z-index: -1;
 `
 
 const ButtonGroup = styled.div`
